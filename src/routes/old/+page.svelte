@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { Card, Button, Select, Input } from 'flowbite-svelte';
+	import { oldPostsStore } from '$lib/dummyData';
+	import { Button, Card, Input, Select } from 'flowbite-svelte';
 	import { SearchOutline } from 'flowbite-svelte-icons';
-	import type { Post } from '$lib/types';
-	import { oldPosts } from '$lib/dummyData';
 
-	let posts: Post[] = oldPosts;
 	let searchQuery = '';
 	let selectedCategory = '';
 
-	$: filteredPosts = posts.filter(
+	$: filteredPosts = $oldPostsStore.filter(
 		(post) =>
 			post.content.toLowerCase().includes(searchQuery.toLowerCase()) &&
 			(selectedCategory === '' ||
@@ -16,7 +14,9 @@
 	);
 
 	function likePost(id: number) {
-		posts = posts.map((post) => (post.id === id ? { ...post, likes: post.likes + 1 } : post));
+		$oldPostsStore = $oldPostsStore.map((post) =>
+			post.id === id ? { ...post, likes: post.likes + 1 } : post
+		);
 	}
 </script>
 

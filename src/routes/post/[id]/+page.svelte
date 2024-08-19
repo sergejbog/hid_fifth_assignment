@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Card, Button, Avatar, Label, Textarea } from 'flowbite-svelte';
-	import type { Post, Comment } from '$lib/types';
-	import { youngPosts, oldPosts } from '$lib/dummyData';
+	import { oldPostsStore, youngPostsStore } from '$lib/dummyData';
+	import type { Comment, Post } from '$lib/types';
+	import { Avatar, Button, Card, Label, Textarea } from 'flowbite-svelte';
 	import toast from 'svelte-french-toast';
 
 	const postId = parseInt($page.params.id);
-	const post: Post | undefined = [...youngPosts, ...oldPosts].find((p) => p.id === postId);
+	const post: Post | undefined = [...$youngPostsStore, ...$oldPostsStore].find(
+		(p) => p.id === postId
+	);
 
 	let newComment = '';
 
