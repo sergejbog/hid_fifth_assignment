@@ -130,12 +130,42 @@ let youngPosts: Post[] = [
 		72,
 		12,
 		'2d'
+	),
+	createPost(
+		19,
+		'Richard Davis',
+		27,
+		'Exploring the impact of AI in the music industry. From generating new tunes to enhancing production quality, AI is revolutionizing how we create and enjoy music. Excited to share insights, trends, and breakthroughs...',
+		45,
+		8,
+		'12hr',
+		'https://picsum.photos/seed/firstposthere/300/200'
+	),
+	createPost(
+		20,
+		'Richard Davis',
+		27,
+		"Just discovered an amazing new indie band that blends '80s rock with modern electronic beats. Their unique sound is refreshing and addictive. Can't stop listening to their latest album! Check them out and let me know what you think...",
+		67,
+		15,
+		'1d',
+		'https://picsum.photos/seed/secondposthere/300/200'
+	),
+	createPost(
+		21,
+		'Richard Davis',
+		27,
+		'Just finished reading a fascinating book on the history of music. From ancient melodies to modern genres, the evolution of music is truly remarkable. Highly recommend this book to all music enthusiasts!',
+		34,
+		3,
+		'2d',
+		'https://picsum.photos/seed/thirdposthere/300/200'
 	)
 ];
 
 let oldPosts: Post[] = [
 	createPost(
-		1,
+		11,
 		'Robert Smith',
 		65,
 		"Listening to some classic vinyl records today. The warm sound of analog just can't be beaten. What's your favorite classic album?",
@@ -145,7 +175,7 @@ let oldPosts: Post[] = [
 		'https://picsum.photos/seed/secondone/300/200'
 	),
 	createPost(
-		2,
+		12,
 		'Margaret Johnson',
 		58,
 		'Just attended a wonderful symphony orchestra performance. The timeless beauty of classical music never fails to move me.',
@@ -154,7 +184,7 @@ let oldPosts: Post[] = [
 		'1d'
 	),
 	createPost(
-		3,
+		13,
 		'Frank Miller',
 		70,
 		"Revisiting the golden age of rock 'n' roll. The energy and rebellion in those old tracks still resonate today. Who's your favorite rock legend?",
@@ -164,7 +194,7 @@ let oldPosts: Post[] = [
 		'https://picsum.photos/seed/rockroll/300/200'
 	),
 	createPost(
-		4,
+		14,
 		'Carol Davis',
 		62,
 		"Just discovered a local folk music club. It's heartwarming to see young people keeping traditional music alive. Any folk music lovers here?",
@@ -173,7 +203,7 @@ let oldPosts: Post[] = [
 		'2d'
 	),
 	createPost(
-		5,
+		15,
 		'George Thompson',
 		68,
 		"Attended a jazz festival over the weekend. The improvisations were mind-blowing! It's amazing how jazz continues to evolve while staying true to its roots.",
@@ -183,7 +213,7 @@ let oldPosts: Post[] = [
 		'https://picsum.photos/seed/jazzfest/300/200'
 	),
 	createPost(
-		6,
+		16,
 		'Patricia Clark',
 		55,
 		"Finally learned how to use music streaming services. It's incredible to have so much music at my fingertips! Any playlist recommendations for a newcomer?",
@@ -192,7 +222,7 @@ let oldPosts: Post[] = [
 		'6hr'
 	),
 	createPost(
-		7,
+		17,
 		'Harold Wilson',
 		72,
 		"Dusted off my old guitar and started playing again after years. It's never too late to reconnect with your passion for music!",
@@ -202,7 +232,7 @@ let oldPosts: Post[] = [
 		'https://picsum.photos/seed/oldguitar/300/200'
 	),
 	createPost(
-		8,
+		18,
 		'Elizabeth Garner',
 		60,
 		"Attended an 80s tribute concert last night. The nostalgia was overwhelming! It's amazing how music can transport you back in time. What's your favorite 80s hit?",
@@ -258,38 +288,7 @@ let userProfile: UserProfile = {
 			image: '/images/taylor-swift.jpg'
 		}
 	],
-	posts: [
-		createPost(
-			1,
-			'Richard Davis',
-			27,
-			'Exploring the impact of AI in the music industry. From generating new tunes to enhancing production quality, AI is revolutionizing how we create and enjoy music. Excited to share insights, trends, and breakthroughs...',
-			45,
-			8,
-			'12hr',
-			'https://picsum.photos/seed/firstposthere/300/200'
-		),
-		createPost(
-			2,
-			'Richard Davis',
-			27,
-			"Just discovered an amazing new indie band that blends '80s rock with modern electronic beats. Their unique sound is refreshing and addictive. Can't stop listening to their latest album! Check them out and let me know what you think...",
-			67,
-			15,
-			'1d',
-			'https://picsum.photos/seed/secondposthere/300/200'
-		),
-		createPost(
-			3,
-			'Richard Davis',
-			27,
-			'Just finished reading a fascinating book on the history of music. From ancient melodies to modern genres, the evolution of music is truly remarkable. Highly recommend this book to all music enthusiasts!',
-			34,
-			3,
-			'2d',
-			'https://picsum.photos/seed/thirdposthere/300/200'
-		)
-	],
+	posts: [],
 	settings: {
 		emailLikes: true,
 		emailReplies: false,
@@ -315,6 +314,8 @@ export async function initializeData() {
 	for (let post of userProfile.posts) {
 		post.comments = await generateComments(Math.floor(Math.random() * 5) + 1);
 	}
+
+	userProfile.posts = youngPosts.slice(-3);
 
 	youngPostsStore.set(youngPosts);
 	oldPostsStore.set(oldPosts);
