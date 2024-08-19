@@ -18,7 +18,7 @@
 <div style="background: linear-gradient(rgba(0,85,255,.07) 0,rgba(0,85,255,.05) 100%) !important">
 	<Navbar />
 
-	{#if $isDataInitialized && $page.url.pathname !== '/'}
+	{#if $isDataInitialized || $page.url.pathname === '/'}
 		<main class="mx-auto font-openSans">
 			<slot />
 		</main>
